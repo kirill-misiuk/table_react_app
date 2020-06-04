@@ -10,7 +10,7 @@ app.listen(3002, () => console.log('App listening on port 3002!'));
 
 app.get('/',(req,res)=>{
   if(data) {
-    return res.status(200).json({status: res.statusCode, data})
+    return res.status(200).json({status: res.statusCode, data: data.data})
   }
   else{
    return  res.status(404).json({status: res.statusCode, err:'Error with getting data!'})

@@ -1,11 +1,12 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import Table from "../../components/table";
-import MainEffects from "../../store/effects"
-import MainActions from "../../store/actions"
+import MainEffects from "../../store/effects";
+import MainActions from "../../store/actions";
+
 class MainPage extends PureComponent {
   componentDidMount() {
-    this.props.loadData()
+    this.props.loadData();
   }
 
   render() {
@@ -22,9 +23,7 @@ const mainEffects = new MainEffects(mainActions);
 
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({
-  loadData: () =>
-      dispatch(mainEffects.loadData()),
+  loadData: () => dispatch(mainEffects.loadData()),
 });
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(MainPage);
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
