@@ -1,44 +1,73 @@
 import {
   STATUS_LOADING,
   SET_DATA,
-  DELETE_ONE, SET_ERROR,
-} from '../actions';
+  DELETE_ONE,
+  SET_ERROR,
+  SET_PER_PAGE,
+  SET_CURRENT_PAGE,
+  SET_COUNT,
+  SET_PAGE_COUNT,
+} from "../actions";
 
-const initialState ={
-statusLoading:true,
-data:[],
-error:null
-}
+const initialState = {
+  statusLoading: true,
+  data: [],
+  error: null,
+  pagination: {
+    perPage: 5,
+    currentPage: 0,
+    count: 0,
+    pageCount: 0,
+  },
+};
 
-export default (state= initialState,action)=>{
-  switch (action.type){
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case STATUS_LOADING: {
+      return {
+        ...state,
+        statusLoading: action.payload,
+      };
+    }
+    case SET_DATA: {
+      return {
+        ...state,
+        data: action.payload,
+      };
+    }
+    case DELETE_ONE: {
+      return {
+        ...state,
+        data: state.data.filter((job) => job.id !== action.payload),
+      };
+    }
+    case SET_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case SET_COUNT: {
+      return {
+        ...state,
+        pagination: { ...state.pagination, count: action.payload },
+      };
+    }
+    case SET_CURRENT_PAGE: {
+      return {
+        ...state,
+        pagination: { ...state.pagination, currentPage: action.payload },
+      };
+    }
 
-    case STATUS_LOADING:{
+    case SET_PAGE_COUNT: {
       return {
         ...state,
-        statusLoading: action.payload
-      }
-    }
-    case SET_DATA:{
-      return {
-        ...state,
-        data: action.payload
-      }
-    }
-    case DELETE_ONE:{
-      return {
-        ...state,
-        data: state.data.filter((job) => job._id !== action.payload),
-      }
-    }
-    case SET_ERROR:{
-      return {
-        ...state,
-        error: action.payload
-      }
+        pagination: { ...state.pagination, pageCount: action.payload },
+      };
     }
 
     default:
-      return state
+      return state;
   }
-}
+};
