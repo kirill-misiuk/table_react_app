@@ -1,11 +1,11 @@
-import React from 'react';
-import './index.css';
-import MainPage from './pages/main';
+import React from "react";
+import "./index.scss";
+import MainPage from "./pages/main";
 
 function CommonApp() {
   return (
     <div className="App">
-      <MainPage/>
+      <MainPage />
     </div>
   );
 }

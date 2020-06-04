@@ -5,7 +5,7 @@
 export const STATUS_LOADING ="STATUS_LOADING"
 export const SET_DATA = "GET_DATA"
 export const DELETE_ONE = "DELETE_ONE"
-
+export const SET_ERROR = "SET_ERROR"
 /*
  * action creators
  */
@@ -22,6 +22,9 @@ export default class mainActions {
 
   deleteOne(payload){
     return {type:DELETE_ONE, payload}
+  }
+  setError(payload){
+    return {type:SET_ERROR,payload}
   }
 
 }

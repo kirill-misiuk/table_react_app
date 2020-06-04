@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import {config} from '../config'
 const http = axios.create({
   baseURL: config.url,
   timeout: config.timeout,
@@ -11,7 +11,11 @@ http.interceptors.response.use(
     (error) => console.log(error)
 );
 
-export const getData = (preset) => {
-  const url = `${config.protocol}://${config.testHost}/`;
+export const getData = () => {
+  const url = `${config.protocol}://${config.host}/`;
   return http.get(url);
 };
+export const deleteData =(id)=>{
+  const url = `${config.protocol}://${config.host}/${id}`;
+  return http.delete(url);
+}
