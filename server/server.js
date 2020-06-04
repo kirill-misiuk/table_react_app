@@ -19,7 +19,7 @@ app.get('/',(req,res)=>{
 app.delete('/:id',(req,res)=>{
   if(data) {
     const newData = data.data.filter((job)=> job.id !== req.params.id)
-    return res.status(200).json({status: res.statusCode, newData})
+    return res.status(200).json({status: res.statusCode, data:newData})
   }
   else{
     return  res.status(404).json({status: res.statusCode, err:'Error with getting data!'})
