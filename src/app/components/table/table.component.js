@@ -6,26 +6,40 @@ import MainActions from "../../store/actions";
 import {
   selectCount,
   selectCurrentPage,
-  selectData,
-  selectPerPage,
+  selectData, selectPageCount,
+  selectPerPage, selectSearchField,
 } from "../../store/selectors";
-import PaginationComponent from "../pagination";
+
 class TableComponent extends PureComponent {
   handleDeleteButton = (id) => {
     this.props.deleteData(id);
   };
 
+  filterData=()=>{
+    const condition = new RegExp(this.props.searchField);
+    return this.props.data.filter((el)=>condition.test(el.title))
+  }
   prepareDataToShow = () => {
-    return this.props.data.slice(
+    return this.filterData().slice(
       this.props.currentPage * this.props.perPage,
       (this.props.currentPage + 1) * this.props.perPage
     );
   };
+  componentDidUpdate(prevProps) {
+    const newCount = this.filterData().length
+    if(newCount !== this.props.count){
+      if(newCount===0){
+        this.props.setCount(1)
+      }else{
+        this.props.setCount(this.filterData().length)
+      }
+
+    }
+  }
 
   render() {
     return (
       <div>
-        <PaginationComponent />
         <Table>
           <thead>
             <tr>
@@ -62,10 +76,13 @@ const mapStateToProps = (state) => ({
   data: selectData(state),
   count: selectCount(state),
   perPage: selectPerPage(state),
+  pageCount: selectPageCount(state),
   currentPage: selectCurrentPage(state),
+  searchField: selectSearchField(state),
 });
 const mapDispatchToProps = (dispatch) => ({
   deleteData: (id) => dispatch(mainEffects.deleteData(id)),
+  setCount:(number)=> dispatch(mainActions.setCount(number))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableComponent);

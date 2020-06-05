@@ -20,7 +20,6 @@ class PaginationComponent extends PureComponent {
   }
 
   handlePageClick = (data) => {
-    debugger;
     this.props.setCurrentPage(data.selected);
   };
   render() {

@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import Table from "../../components/table";
 import MainEffects from "../../store/effects";
 import MainActions from "../../store/actions";
+import PaginationComponent from "../../components/pagination/pagination.component";
+import SearchFilterComponent from "../../components/search-filter/search-filter.component";
 
 class MainPage extends PureComponent {
   componentDidMount() {
@@ -13,6 +15,8 @@ class MainPage extends PureComponent {
     return (
       <div>
         <h2>Job List</h2>
+          <SearchFilterComponent/>
+          <PaginationComponent />
         <Table />
       </div>
     );

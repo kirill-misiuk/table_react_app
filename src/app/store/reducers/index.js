@@ -3,10 +3,10 @@ import {
   SET_DATA,
   DELETE_ONE,
   SET_ERROR,
-  SET_PER_PAGE,
   SET_CURRENT_PAGE,
   SET_COUNT,
   SET_PAGE_COUNT,
+  SET_SEARCH_FIELD,
 } from "../actions";
 
 const initialState = {
@@ -19,6 +19,10 @@ const initialState = {
     count: 0,
     pageCount: 0,
   },
+  search:{
+    field:'',
+    foundData:[]
+  }
 };
 
 export default (state = initialState, action) => {
@@ -65,6 +69,12 @@ export default (state = initialState, action) => {
         ...state,
         pagination: { ...state.pagination, pageCount: action.payload },
       };
+    }
+    case SET_SEARCH_FIELD:{
+      return {
+        ...state,
+        search: {...state.search, field: action.payload}
+      }
     }
 
     default:

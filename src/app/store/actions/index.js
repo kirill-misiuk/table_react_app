@@ -8,8 +8,9 @@ export const DELETE_ONE = "DELETE_ONE";
 export const SET_ERROR = "SET_ERROR";
 export const SET_COUNT = "GET_COUNT";
 export const SET_CURRENT_PAGE = "CURRENT_PAGE";
-export const SET_PER_PAGE = "SET_PER_PAGE";
 export const SET_PAGE_COUNT = "SET_PAGE_COUNT";
+export const SET_SEARCH_FIELD ="SET_SEARCH_FIELD"
+
 /*
  * action creators
  */
@@ -39,5 +40,8 @@ export default class mainActions {
 
   setPageCount(payload) {
     return { type: SET_PAGE_COUNT, payload };
+  }
+  setSearchField(payload){
+    return{ type: SET_SEARCH_FIELD,payload };
   }
 }
